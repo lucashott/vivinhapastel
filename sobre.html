@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vivinha | Pastelaria e Tapiocaria</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+
+<body>
+  <!-- Cabeçalho -->
+  <header class="header">
+    <img src="images/logo.png" alt="Pastelaria e Tapiocaria Vivinha">
+  </header>
+
+  <!-- Navegação -->
+  <nav class="nav">
+    <ul>
+        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="cardapio.html"><i class="fas fa-image"></i> Cardápio</a></li>
+        <li><a href="sobre.html"><i class="fas fa-info-circle"></i> Sobre Nós</a></li>
+        <li><a href="contato.html"><i class="fas fa-envelope"></i> Contato</a></li>
+    </ul>
+</nav>
+
+
+  <!-- Carrossel de destaques -->
+  <section class="carrossel">
+    <img src="https://resize.casapino.com.br/?u=https://cms-bomgourmet.s3.amazonaws.com/bomgourmet%2F2023%2F09%2F03170954%2F1692018396948.jpg&w=661" alt="Promoção 1">
+    <img src="https://s2.glbimg.com/XKTelTEuZzxR7qzw_uist9ytsv4=/smart/e.glbimg.com/og/ed/f/original/2016/11/23/bottega-veneta_407436_vawc3.jpg" alt="Destaque do Mês">
+    <img src="https://images.rappi.com.br/restaurants_background/brpastelgourmettt-1671217742295.jpg" alt="Destaque do Mês">
+    <img src="https://http2.mlstatic.com/D_NQ_NP_821332-MLB74125758103_012024-O.webp" alt="Pastéis Gourmet">
+  </section>
+
+
+  <!-- Seção Sobre -->
+  <section class="sobre-texto" style="max-width: 900px; margin: 60px auto; padding: 20px;">
+    <h2 style="text-align: center; color: #e91e63;">Nossa História</h2>
+
+    <p style="line-height: 2; text-align: justify; font-size: 1.1rem;">
+      A Vivinha nasceu em 2010 com o sonho de levar mais sabor e carinho para a vida das pessoas.
+      Começamos em uma pequena feira de bairro, servindo pastéis e tapiocas com ingredientes frescos e receitas de família.
+      Ao longo dos anos, ganhamos o coração dos nossos clientes e expandimos com muito trabalho, amor e dedicação.
+    </p>
+
+    <p style="line-height: 2; text-align: justify; font-size: 1.1rem;">
+      Nossos valores são simples: respeito, qualidade, acolhimento e sabor. Cada preparo é feito com zelo, como se fosse para a nossa própria casa.
+      Mais do que alimentos, servimos experiências que despertam memórias afetivas e criam momentos especiais para todos. E agora você pode saborear nossas delícias de onde estiver! 
+      
+    </p>
+    <p style="line-height: 2; text-align: justify; font-size: 1.1rem;">
+      
+      <br><strong>Faça seu pedido diretamente pelo nosso site</strong> e receba no conforto da sua casa com toda a qualidade Vivinha que você já conhece.
+    </p>
+
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="https://wa.me/5521987654321" target="_blank" style="
+        background-color: #ec407a;
+        color: white;
+        padding: 14px 28px;
+        font-size: 1rem;
+        border-radius: 30px;
+        text-decoration: none;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        transition: background 0.3s;">
+        🛒 Fazer Pedido Agora
+      </a>
+    </div>
+  </section>
+
+  <!-- Carrossel Institucional -->
+  <section class="carrossel">
+    <img src="https://s2.glbimg.com/FiZrobmM1Sy1lFn29xO4zn6ZEZE=/620x455/e.glbimg.com/og/ed/f/original/2017/04/26/pietro-nolita-restaurante-rosa-nova-york_6.jpg" alt="Equipe Vivinha">
+    <img src="https://www.didikrepinsky.com/wp-content/uploads/2017/06/29919877016_04b80cd4ed_o.0-840x560.jpg" alt="Cozinha em ação">
+    <img src="https://cdn6.campograndenews.com.br/uploads/noticias/2022/09/23/a914fb8b6271cd00e1f63492f16134ffb4c534de.jpeg" alt="Fachada da loja">
+    <img src="https://i.pinimg.com/originals/2b/79/87/2b79877dab52078e426294705b63ff6e.jpg" alt="Fachada da loja">
+  </section>
+
+  <!-- Scripts -->
+  <script>
+    // Carrossel automático para todos os carrosseis
+    const carrossels = document.querySelectorAll(".carrossel");
+    carrossels.forEach(carrossel => {
+      const imgs = carrossel.querySelectorAll("img");
+      let index = 0;
+      imgs.forEach(img => img.classList.remove("active"));
+      if (imgs.length > 0) imgs[0].classList.add("active");
+
+      setInterval(() => {
+        imgs[index].classList.remove("active");
+        index = (index + 1) % imgs.length;
+        imgs[index].classList.add("active");
+      }, 3000);
+    });
+
+    // Carregar produtos dinamicamente
+    fetch('produtos.json')
+      .then(res => res.json())
+      .then(produtos => {
+        const container = document.getElementById("lista-produtos");
+        produtos.forEach(prod => {
+          container.innerHTML += `
+            <div class="produto">
+              <img src="${prod.imagem}" alt="${prod.nome}">
+              <h3>${prod.nome}</h3>
+              <p>${prod.descricao}</p>
+              <p><strong>R$ ${prod.preco.toFixed(2)}</strong></p>
+            </div>
+          `;
+        });
+      })
+      .catch(err => {
+        document.getElementById("lista-produtos").innerHTML = "<p>Erro ao carregar produtos.</p>";
+        console.error(err);
+      });
+  </script>
+
+  <!-- Botão flutuante de pedido -->
+  <a href="https://wa.me/5521987654321" target="_blank" class="pedido-btn">
+    🛒 Peça Agora
+  </a>
+
+  <!-- Rodapé -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section contact">
+        <h3>Fale Conosco</h3>
+        <p><i class="fas fa-envelope"></i> contato@vivinhapastel.com.br</p>
+        <p><i class="fas fa-phone-alt"></i> (21) 98765-4321</p>
+        <p><i class="fas fa-map-marker-alt"></i> Rua da Tapioca, 123 – Rio de Janeiro, RJ</p>
+      </div>
+      <div class="footer-section socials">
+        <h3>Redes Sociais</h3>
+        <div class="icons">
+          <a href="https://wa.me/5521987654321" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank" aria-label="Delivery"><i class="fas fa-motorcycle"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Pastelaria e Tapiocaria Vivinha. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+  
+  
+</body>
+</html>

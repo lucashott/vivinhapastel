@@ -1,0 +1,45 @@
+[
+    {
+      "id": 1,
+      "produto": "Pastel de Carne",
+      "preco": 9.50,
+      "detalhe": "Massa crocante recheada com carne moída bem temperada.",
+      "imagem": "https://culinariadesucesso.com/wp-content/uploads/2023/11/tipos-de-pastel-para-vender.png"
+    },
+    {
+      "id": 2,
+      "produto": "Pastel de Queijo",
+      "preco": 8.00,
+      "detalhe": "Clássico e irresistível. Queijo derretido envolto em massa crocante.",
+      "imagem": "https://receitas123.com/wp-content/uploads/2023/06/pastel-de-chocolate-1.png"
+    },
+    {
+      "id": 3,
+      "produto": "Pastel Gourmet de Camarão",
+      "preco": 14.90,
+      "detalhe": "Recheio premium com camarão ao alho e óleo e catupiry.",
+      "imagem": "https://blog.dipratos.com.br/wp-content/uploads/2022/06/ideias-de-recheios-de-pastel-scaled-e1654349592262.jpeg"
+    },
+    {
+      "id": 4,
+      "produto": "Tapioca de Frango com Requeijão",
+      "preco": 11.00,
+      "detalhe": "Recheio suculento de frango desfiado com requeijão cremoso.",
+      "imagem": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCCaBMYC9G5FxCSAaq8L9N9bb2fmaF0WKzHA&s"
+    },
+    {
+      "id": 5,
+      "produto": "Tapioca de Morango com Nutella",
+      "preco": 13.00,
+      "detalhe": "Morango fresco com creme de Nutella. Uma sobremesa inesquecível.",
+      "imagem": "https://www.mika.com.br/image/d2lkdGg9NTIwJmhlaWdodD0zMzAmemM9MSZxPTk5JnNyYz1pbWcvcmVjZWl0YXMvZm90b180Ni5qcGcmc2VjdXJlPXtidXJufQ==.jpg"
+    },
+    {
+      "id": 6,
+      "produto": "Tapioca Gourmet de Salmão",
+      "preco": 16.00,
+      "detalhe": "Salmão grelhado com cream cheese e toque de ervas finas.",
+      "imagem": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/19/c7/80/02/tapioca-de-carne-seca.jpg?w=900&h=500&s=1"
+    }
+  ]
+  
