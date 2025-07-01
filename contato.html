@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contato | Vivinha Pastelaria</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+
+  <!-- Cabeçalho -->
+  <header class="header">
+    <img src="imagem/cabecalho.jpeg" alt="Pastelaria e Tapiocaria Vivinha">
+  </header>
+
+  <!-- Navegação -->
+  <nav class="nav">
+    <ul>
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="#"><i class="fas fa-image"></i> Cardápio</a></li>
+      <li><a href="sobre.html"><i class="fas fa-info-circle"></i> Sobre Nós</a></li>
+      <li><a href="contato.html"><i class="fas fa-envelope"></i> Contato</a></li>
+    </ul>
+  </nav>
+
+  <!-- Conteúdo principal -->
+  <main>
+    <section id="contato">
+      <h2>Fale Conosco</h2>
+
+      <form id="form-contato">
+        <label for="nome">Nome Completo:</label>
+        <input type="text" id="nome" name="nome" required placeholder="Digite seu nome completo">
+
+        <label for="cep">CEP:</label>
+        <input type="text" id="cep" name="cep" required maxlength="9" placeholder="00000-000" onblur="buscarCEP()">
+
+        <label for="rua">Rua:</label>
+        <input type="text" id="rua" name="rua" required placeholder="Rua">
+
+        <label for="bairro">Bairro:</label>
+        <input type="text" id="bairro" name="bairro" required placeholder="Bairro">
+
+        <label for="cidade">Cidade:</label>
+        <input type="text" id="cidade" name="cidade" required placeholder="Cidade">
+
+        <label for="estado">Estado:</label>
+        <input type="text" id="estado" name="estado" required placeholder="Estado">
+
+        <label for="assunto">Assunto:</label>
+        <textarea id="assunto" name="assunto" rows="6" required placeholder="Digite sua mensagem"></textarea>
+
+        <button type="submit">Enviar Mensagem</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Botão flutuante -->
+  <a href="https://wa.me/5521987654321" target="_blank" class="pedido-btn">
+    🛒 Peça Agora
+  </a>
+
+  <!-- Rodapé -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section contact">
+        <h3>Contato</h3>
+        <p><i class="fas fa-envelope"></i> contato@vivinhapastel.com.br</p>
+        <p><i class="fas fa-phone"></i> (21) 98765-4321</p>
+      </div>
+      <div class="footer-section socials">
+        <a href="https://wa.me/5521987654321" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fa-solid fa-motorcycle"></i></a>
+      </div>
+    </div>
+  
+    <div class="footer-bottom">
+      <p>&copy; 2025 Pastelaria e Tapiocaria Vivinha. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+  
+
+  <!-- Script ViaCEP -->
+  <script>
+    function buscarCEP() {
+      const cep = document.getElementById('cep').value.replace(/\D/g, '');
+      if (cep.length !== 8) {
+        alert('CEP inválido!');
+        return;
+      }
+
+      fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Erro na requisição');
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (data.erro) {
+            alert('CEP não encontrado!');
+            return;
+          }
+          document.getElementById('rua').value = data.logradouro;
+          document.getElementById('bairro').value = data.bairro;
+          document.getElementById('cidade').value = data.localidade;
+          document.getElementById('estado').value = data.uf;
+        })
+        .catch(error => {
+          alert('Erro ao buscar CEP!');
+          console.error(error);
+        });
+    }
+  </script>
+</body>
+</html>
